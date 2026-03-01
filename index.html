@@ -3124,4 +3124,14 @@ window.addEventListener('resize',()=>{
     <span>☰</span><span>MENÜ</span>
   </button>
 </div>
+  <script>
+document.addEventListener('touchstart', function(e) {
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent('click', {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  e.target.dispatchEvent(mouseEvent);
+}, {passive: false});
+</script>
 </body></html>
