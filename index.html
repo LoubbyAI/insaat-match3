@@ -2909,15 +2909,14 @@ function mobNav(tab){
 }
 
 // updUI'ye mobil güncelleme ekle
-const _origUpdUI=updUI;
-function updUI(){
-  _origUpdUI();
-  updMobTopbar();
-  // Sheet açıksa içeriği güncelle
-  if(currentSheet&&document.getElementById('mob-sheet')?.classList.contains('show')){
-    mobNav(currentSheet);
-  }
-}
+// updUI hook — mobil topbar güncelle
+(function(){
+  const _orig=updUI;
+  updUI=function(){
+    _orig();
+    updMobTopbar();
+  };
+})();
 
 // Touch olayları — daha iyi dokunma hissi
 document.addEventListener('touchstart',function(e){
