@@ -2236,7 +2236,7 @@ function onClick(r,c){
   } else {
     const el=getEl(sel.r,sel.c);if(el)el.classList.remove('sel');
     if(sel.r===r&&sel.c===c){sel=null;return;}
-    const adj=Math.abs(sel.r-r)+Math.abs(sel.c-c)<=2;
+    const adj=Math.abs(sel.r-r)+Math.abs(sel.c-c)===1;
     if(adj){
       const sr=sel.r,sc=sel.c;sel=null;
       doSwap(sr,sc,r,c);
