@@ -3125,19 +3125,13 @@ window.addEventListener('resize',()=>{
   </button>
 </div>
  <script>
-let selectedEl = null;
 document.addEventListener('touchend', function(e) {
   e.preventDefault();
   var touch = e.changedTouches[0];
   var el = document.elementFromPoint(touch.clientX, touch.clientY);
-  if (el) {
-    if (!selectedEl) {
-      selectedEl = el;
-      el.click();
-    } else {
-      el.click();
-      selectedEl = null;
-    }
+  while(el && !el.dataset.r) el = el.parentElement;
+  if(el && el.dataset.r !== undefined) {
+    onClick(parseInt(el.dataset.r), parseInt(el.dataset.c));
   }
 }, {passive: false});
 </script>
