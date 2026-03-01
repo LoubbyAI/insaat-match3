@@ -3124,14 +3124,21 @@ window.addEventListener('resize',()=>{
     <span>☰</span><span>MENÜ</span>
   </button>
 </div>
-  <script>
-document.addEventListener('touchstart', function(e) {
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent('click', {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  e.target.dispatchEvent(mouseEvent);
+ <script>
+let selectedEl = null;
+document.addEventListener('touchend', function(e) {
+  e.preventDefault();
+  var touch = e.changedTouches[0];
+  var el = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (el) {
+    if (!selectedEl) {
+      selectedEl = el;
+      el.click();
+    } else {
+      el.click();
+      selectedEl = null;
+    }
+  }
 }, {passive: false});
 </script>
 </body></html>
